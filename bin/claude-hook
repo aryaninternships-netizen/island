@@ -1,0 +1,22 @@
+#!/bin/zsh
+# Claude Code hook -> Island live activity. Usage: claude-hook <start|stop|attention|end>
+# Reads the hook JSON on stdin for session_id + cwd. Never blocks Claude, never fails.
+pgrep -xq Island || exit 0
+read -r -d '' json
+eval "$(python3 -c '
+import json,sys,os,shlex
+try: d=json.loads(sys.argv[1] or "{}")
+except Exception: d={}
+print("sid="+shlex.quote(d.get("session_id","x")[:8]))
+print("proj="+shlex.quote(os.path.basename(d.get("cwd") or os.getcwd())))
+' "$json")"
+I=~/mac-island/bin/island
+id="claude-$sid"
+case $1 in
+  start)     $I notify --id $id --sticky --spinner --color orange --icon sparkles ;;
+  stop)      $I dismiss --id $id; $I notify "Claude done" "$proj" --icon sparkles --color green --duration 4 ;;
+  attention) $I notify --id $id --sticky --state waiting --icon hand.raised.fill --color orange
+             $I notify "Claude needs you" "$proj" --icon hand.raised.fill --color orange --duration 6 ;;
+  end)       $I dismiss --id $id ;;
+esac
+exit 0

@@ -1,0 +1,10 @@
+.build/
+build/
+vendor/
+*.app
+.signing/
+pup/.venv/
+pup/*.safetensors
+pup/pup.bin
+.local.env
+dist/

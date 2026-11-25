@@ -1,0 +1,30 @@
+#!/bin/zsh
+# Push live activities to Island from any script.
+#   island notify "Title" ["Body"] [--icon sf.symbol] [--color orange|#ff8800] [--id x] [--sticky] [--spinner] [--progress 0.4] [--duration 5] [--state waiting]
+#   island dismiss [--id x]
+#   island open
+cmd=${1:-notify}; shift 2>/dev/null
+enc() { python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1],safe=""))' "$1"; }
+q=()
+pos=()
+while (( $# )); do
+  case $1 in
+    --icon) q+=("icon=$(enc $2)"); shift 2;;
+    --color) q+=("color=$(enc $2)"); shift 2;;
+    --id) q+=("id=$(enc $2)"); shift 2;;
+    --progress) q+=("progress=$2"); shift 2;;
+    --duration) q+=("duration=$2"); shift 2;;
+    --trailing) q+=("trailing=$(enc $2)"); shift 2;;
+    --state) q+=("state=$(enc $2)"); shift 2;;
+    --sticky) q+=("sticky=1"); shift;;
+    --spinner) q+=("spinner=1"); shift;;
+    --banner) q+=("banner=1"); shift;;
+    *) pos+=("$1"); shift;;
+  esac
+done
+[[ -n ${pos[1]} ]] && q+=("title=$(enc "${pos[1]}")")
+[[ -n ${pos[2]} ]] && q+=("body=$(enc "${pos[2]}")")
+# Sensitive verbs (guard, meeting, share...) need the local key; only this user can read it.
+KEY="$HOME/Library/Application Support/Island/url.key"
+[[ -r $KEY ]] && q+=("key=$(<"$KEY")")
+open -g "island://$cmd?${(j:&:)q}"

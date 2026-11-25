@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Island</string>
+	<key>CFBundleExecutable</key>
+	<string>Island</string>
+	<key>CFBundleIdentifier</key>
+	<string>app.island.notch</string>
+	<key>CFBundleName</key>
+	<string>Island</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.9.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>app.island.notch</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>island</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.4</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Island shows your next events when you open it.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Island shows your next events when you open it.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Island records meetings you start from the notch, and notices when a call app is using the microphone.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>Island adds the meeting action items you pick to an Island Meetings list in Reminders.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Island adds the meeting action items you pick to an Island Meetings list in Reminders.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Island writes a live transcript of meetings you record, on this Mac.</string>
+	<key>NSAudioCaptureUsageDescription</key>
+	<string>Island records the call audio (Zoom, Meet, Teams) of meetings you record, so remote voices are in the notes.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Island uses the camera to recognise your face: to blur and lock the screen when you step away, open it again for you, unlock the lock screen if you turn that on, and photograph anyone who touches your Mac while Guard is on. Frames never leave this Mac; only Guard photos are saved.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+</dict>
+</plist>
